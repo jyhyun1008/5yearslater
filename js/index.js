@@ -49,7 +49,7 @@ var url = "https://raw.githubusercontent.com/jyhyun1008/5yearslater/main/diary/"
     fetch(url)
     .then(res => res.text())
     .then((out) => {
-        document.querySelector("#diary").innerHTML += parseMd(out)
+        document.querySelector("#diary").innerHTML += "<div class='today'>"+parseMd(out)+"</div>"
     })
     .catch(err => { throw err });
 
