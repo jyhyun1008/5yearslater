@@ -64,7 +64,7 @@ const yesterday = getYesterday();
 const tomorrow = getTomorrow();
 const diary = document.querySelector("#diary")
 
-if (100*vw >= 700) {
+if (100*vw >= 1200) {
 
 var url = "https://raw.githubusercontent.com/jyhyun1008/5yearslater/main/diary/"+(year-4)+today+".md"
     fetch(url)
