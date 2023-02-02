@@ -19,6 +19,14 @@
     --white2: #ffffffbb;
     --accent1: #7dcfb6;
     --accent2: #f79256;
+    --red: #ffadad;
+    --orange: #ffd6a5;
+    --yellow: #fdffb6;
+    --green: #caffbf;
+    --sky: #9bf6ff;
+    --blue: #a0d4ff;
+    --purple: #bdb2ff;
+    --pink: #ffc6ff;
 }
 
 body {
