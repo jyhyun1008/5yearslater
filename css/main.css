@@ -1,6 +1,12 @@
 
 @font-face {
     font-family: 'regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/IM_Hyemin-Regular.woff2') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'bold';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/IM_Hyemin-Bold.woff2') format('woff');
     font-weight: normal;
     font-style: normal;
@@ -28,6 +34,7 @@ span {
 }
 
 #logo {
+    font-family: 'bold';
     font-size: 2.5em;
     text-align: center;
 }
