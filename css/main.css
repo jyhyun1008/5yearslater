@@ -49,6 +49,8 @@ span {
 }
 
 .d {
+    margin-top: 0px;
+    padding-top: 0px;
     text-align: center;
     color: var(--accent);
 }
