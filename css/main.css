@@ -1,0 +1,61 @@
+
+@font-face {
+    font-family: 'regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KyoboHandwriting2021sjy.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root{
+    --bg: #7dcfb6;
+    --accent: #f79256;
+}
+
+body {
+    font-family: 'regular';
+    font-size: 18px;
+    background-color: var(--bg);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+span {
+    color: var(--accent);
+    font-size: inherit;
+}
+
+#logo {
+    font-size: 2.5em;
+    text-align: center;
+}
+
+#diary, #daytracker{
+    width: 100%;
+    max-width: 840px;
+    margin: 20px auto;
+    padding: 5px 0;
+    border-radius: 15px;
+    background-color: #ffffff66;
+}
+
+.d {
+    text-align: center;
+    color: var(--accent);
+}
+
+.dates {
+    border-radius: 15px;
+    margin: 10px;
+    padding: 10px;
+    background-color: #ffffff66;
+}
+
+.today {
+    border-radius: 15px;
+    margin: 10px;
+    padding: 10px;
+    background-color: #ffffff;
+}
