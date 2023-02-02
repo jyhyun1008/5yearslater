@@ -87,7 +87,7 @@ function parseMd(md){
 }
 
 function findColor(md){
-    var color = md.match(/^`\w+/gm);
+    var color = md.match(/\`\w+/gm);
 
     for (i=0; i<color.length; i++){
         color[i] = color[i].substring(1)
@@ -144,12 +144,7 @@ function loadcolorcodes(vw){
     var colorArray = []
 
     for (i=0; i<colorCount; i++){
-
         dayArray.push(document.querySelector("#day"+(colorCount-i)))
-
-        var thisDay = document.querySelector("#day"+(colorCount-i))
-
-        console.log(thisDay)
         var url = "https://raw.githubusercontent.com/jyhyun1008/5yearslater/main/diary/"+getNthDay(colorCount-i-1)+".md"
             fetch(url)
             .then(res => res.text())
@@ -158,7 +153,7 @@ function loadcolorcodes(vw){
                     colorArray.push(grey)
                 } else {
                     color = findColor(out)
-                    if (color.length == 1) {
+                    if (color.length < 2) {
                         colorArray.push(eval(color[0]))
                     } else {
                         colorArray.push(makeColorString(color))
@@ -169,9 +164,9 @@ function loadcolorcodes(vw){
     }
 
     setTimeout(() => {
-        console.log(colorArray)
         for (i=0; i<colorCount; i++){
-            dayArray[i].style.backgroundColor = colorArray[i]
+            console.log(colorArray)
+            dayArray[i].style.background = colorArray[i]
         }
     }, 100);
 }
