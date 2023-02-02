@@ -168,7 +168,7 @@ function loadcolorcodes(vw){
             console.log(colorArray)
             dayArray[i].style.background = colorArray[i]
         }
-    }, 100);
+    }, 200);
 }
 
 function loadcontents(vw){
