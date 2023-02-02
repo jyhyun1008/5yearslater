@@ -64,6 +64,9 @@ function parseMd(md){
     //links
     md = md.replace(/[\[]{1}([^\]]+)[\]]{1}[\(]{1}([^\)\"]+)(\"(.+)\")?[\)]{1}/g, '<a href="$2" title="$4">$1</a>');
     
+    //code with colorcode
+    md = md.replace(/[\`]{1}([^\`]+)[\s]{1}([^\`]+)[\`]{1}/g, '<code style="background-color: var(--$1);">$2</code>');
+    
     //code
     md = md.replace(/[\`]{1}([^\`]+)[\`]{1}/g, '<code>$1</code>');
 
