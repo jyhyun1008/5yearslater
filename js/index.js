@@ -13,6 +13,8 @@ window.addEventListener('resize', () => {
     let vh = window.innerHeight * 0.01;
     let vw = window.innerWidth * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
+    loadcolorcodes(vw);
+
     if (100*vw <= 1200){
         var ismobile_next = true;
     } else {
@@ -50,6 +52,16 @@ function getTomorrow(){
     return month + day;
 }
 
+function getNthDay(n){
+    var date = new Date();
+    date.setDate(date.getDate() - n);
+    var year = date.getFullYear();
+    var month = ("0" + (1 + date.getMonth())).slice(-2);
+    var day = ("0" + date.getDate()).slice(-2);
+
+    return year + month + day;
+}
+
 
 function parseMd(md){
 
@@ -75,7 +87,36 @@ function parseMd(md){
 }
 
 function findColor(md){
-    var color = md.match(/([^`])\w+/gm);
+    var color = md.match(/^`\w+/gm);
+
+    for (i=0; i<color.length; i++){
+        color[i] = color[i].substring(1)
+    }
+
+    return color;
+}
+
+
+const grey = '#dbdbdb'
+const red = '#ffadad'
+const orange = '#ffd6a5'
+const yellow = '#fdffb6'
+const green = '#caffbf'
+const sky = '#9bf6ff'
+const blue = '#a0d4ff'
+const purple = '#bdb2ff'
+const pink = '#ffc6ff'
+
+function makeColorString(color){
+    var string = 'linear-gradient('
+    for (j=0; j<color.length; j++){
+        if (j == color.length-1){
+            string += eval(color[j])+')'
+        } else {
+            string += eval(color[j])+','
+        }
+    }
+    return string;
 }
 
 const year = new Date().getFullYear();
@@ -85,17 +126,57 @@ const tomorrow = getTomorrow();
 const dayTracker = document.querySelector("#daytracker")
 const diary = document.querySelector("#diary")
 
-function loadcontents(vw){
-    
-var colorCount = parseInt(vw/50)
-for (i=0; i<colorCount; i++){
-    if (i == colorCount-1) {
-        dayTracker.innerHTML += "<div class='todayColorCube' id='day"+(colorCount-i)+"'></div>"
-    } else {
-        dayTracker.innerHTML += "<div class='colorCube' id='day"+(colorCount-i)+"'></div>"
+
+function loadcolorcodes(vw){
+
+    dayTracker.innerHTML = ""
+    var colorCount = parseInt(100*vw/60)
+    for (i=0; i<colorCount; i++){
+        if (i == colorCount-1) {
+            dayTracker.innerHTML += "<div class='todayColorCube' id='day"+(colorCount-i)+"'></div>"
+        } else {
+            dayTracker.innerHTML += "<div class='colorCube' id='day"+(colorCount-i)+"'></div>"
+        }
+        
     }
-    
+
+    var dayArray = []
+    var colorArray = []
+
+    for (i=0; i<colorCount; i++){
+
+        dayArray.push(document.querySelector("#day"+(colorCount-i)))
+
+        var thisDay = document.querySelector("#day"+(colorCount-i))
+
+        console.log(thisDay)
+        var url = "https://raw.githubusercontent.com/jyhyun1008/5yearslater/main/diary/"+getNthDay(colorCount-i-1)+".md"
+            fetch(url)
+            .then(res => res.text())
+            .then((out) => {
+                if (out.includes('404')){
+                    colorArray.push(grey)
+                } else {
+                    color = findColor(out)
+                    if (color.length == 1) {
+                        colorArray.push(eval(color[0]))
+                    } else {
+                        colorArray.push(makeColorString(color))
+                    }
+                }
+            })
+            .catch(err => { throw err });
+    }
+
+    setTimeout(() => {
+        console.log(colorArray)
+        for (i=0; i<colorCount; i++){
+            dayArray[i].style.backgroundColor = colorArray[i]
+        }
+    }, 100);
 }
+
+function loadcontents(vw){
     
 if (100*vw > 1200) {
 
@@ -334,4 +415,5 @@ var url = "https://raw.githubusercontent.com/jyhyun1008/5yearslater/main/diary/"
 
 }
 
+loadcolorcodes(vw);
 loadcontents(vw);

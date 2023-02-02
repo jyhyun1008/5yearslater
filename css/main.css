@@ -27,6 +27,7 @@
     --blue: #a0d4ff;
     --purple: #bdb2ff;
     --pink: #ffc6ff;
+    --grey: #dbdbdb;
 }
 
 body {
@@ -51,12 +52,15 @@ span {
     text-align: center;
 }
 
+h1, h2, h3{
+    font-family: 'bold';
+}
+
 
 #diary, #daytracker{
     width: 100%;
     max-width: 1500px;
     margin: 20px auto;
-    padding: 5px 0;
     border-radius: 15px;
     background-color: var(--accent1);
     display: flex;
@@ -64,6 +68,8 @@ span {
 }
 
 #daytracker .colorCube{
+    margin-top: 10px;
+    margin-bottom: 5px;
     border-radius: 15px;
     width: 40px;
     height: 40px;
@@ -71,6 +77,8 @@ span {
 }
 
 #daytracker .todayColorCube {
+    margin-top: 10px;
+    margin-bottom: 5px;
     border-radius: 15px;
     width: 40px;
     height: 40px;
