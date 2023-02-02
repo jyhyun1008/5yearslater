@@ -70,27 +70,47 @@ var url = "https://raw.githubusercontent.com/jyhyun1008/5yearslater/main/diary/"
     fetch(url)
     .then(res => res.text())
     .then((out) => {
-        document.querySelector("#diary").innerHTML += "<div class='dates'>"+parseMd(out)+"</div>"
+        if (out == "404: Not Found"){
+            document.querySelector("#diary").innerHTML += "<h2>"+(year-4)+today+"</h2><div class='dates'>기록이 없습니다.</div>"
+        } else {
+            document.querySelector("#diary").innerHTML += "<h2>"+(year-4)+today+"</h2><div class='dates'>"+parseMd(out)+"</div>"
+        }
         var url = "https://raw.githubusercontent.com/jyhyun1008/5yearslater/main/diary/"+(year-3)+today+".md"
         fetch(url)
         .then(res => res.text())
         .then((out) => {
-            document.querySelector("#diary").innerHTML += "<div class='dates'>"+parseMd(out)+"</div>"
+            if (out == "404: Not Found"){
+                document.querySelector("#diary").innerHTML += "<h2>"+(year-3)+today+"</h2><div class='dates'>기록이 없습니다.</div>"
+            } else {
+                document.querySelector("#diary").innerHTML += "<h2>"+(year-3)+today+"</h2><div class='dates'>"+parseMd(out)+"</div>"
+            }
             var url = "https://raw.githubusercontent.com/jyhyun1008/5yearslater/main/diary/"+(year-2)+today+".md"
             fetch(url)
             .then(res => res.text())
             .then((out) => {
-                document.querySelector("#diary").innerHTML += "<div class='dates'>"+parseMd(out)+"</div>"
+                if (out == "404: Not Found"){
+                    document.querySelector("#diary").innerHTML += "<h2>"+(year-2)+today+"</h2><div class='dates'>기록이 없습니다.</div>"
+                } else {
+                    document.querySelector("#diary").innerHTML += "<h2>"+(year-2)+today+"</h2><div class='dates'>"+parseMd(out)+"</div>"
+                }
                 var url = "https://raw.githubusercontent.com/jyhyun1008/5yearslater/main/diary/"+(year-1)+today+".md"
                 fetch(url)
                 .then(res => res.text())
                 .then((out) => {
-                    document.querySelector("#diary").innerHTML += "<div class='dates'>"+parseMd(out)+"</div>"
+                    if (out == "404: Not Found"){
+                        document.querySelector("#diary").innerHTML += "<h2>"+(year-1)+today+"</h2><div class='dates'>기록이 없습니다.</div>"
+                    } else {
+                        document.querySelector("#diary").innerHTML += "<h2>"+(year-1)+today+"</h2><div class='dates'>"+parseMd(out)+"</div>"
+                    }
                     var url = "https://raw.githubusercontent.com/jyhyun1008/5yearslater/main/diary/"+year+today+".md"
                     fetch(url)
                     .then(res => res.text())
                     .then((out) => {
-                        document.querySelector("#diary").innerHTML += "<div class='dates'>"+parseMd(out)+"</div>"
+                        if (out == "404: Not Found"){
+                            document.querySelector("#diary").innerHTML += "<h2>"+year+today+"</h2><div class='dates'>기록이 없습니다.</div>"
+                        } else {
+                            document.querySelector("#diary").innerHTML += "<h2>"+year+today+"</h2><div class='dates'>"+parseMd(out)+"</div>"
+                        }
                     })
                     .catch(err => { throw err });
                 })
