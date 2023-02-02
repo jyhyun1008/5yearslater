@@ -11,12 +11,30 @@ window.addEventListener('resize', () => {
 
 function getToday(){
     var date = new Date();
-    var year = date.getFullYear();
     var month = ("0" + (1 + date.getMonth())).slice(-2);
     var day = ("0" + date.getDate()).slice(-2);
 
-    return year + month + day;
+    return month + day;
 }
+
+function getYesterday(){
+    var date = new Date();
+    date.setDate(date.getDate() - 1);
+    var month = ("0" + (1 + date.getMonth())).slice(-2);
+    var day = ("0" + date.getDate()).slice(-2);
+
+    return month + day;
+}
+
+function getTomorrow(){
+    var date = new Date();
+    date.setDate(date.getDate() + 1);
+    var month = ("0" + (1 + date.getMonth())).slice(-2);
+    var day = ("0" + date.getDate()).slice(-2);
+
+    return month + day;
+}
+
 
 function parseMd(md){
 
@@ -40,16 +58,47 @@ function parseMd(md){
     return md;
 }
 
+const year = new Date().getFullYear();
 const today = getToday();
+const yesterday = getYesterday();
+const tomorrow = getTomorrow();
 const diary = document.querySelector("#diary")
 
-if (vw >= 700) {
+if (100*vw >= 700) {
 
-var url = "https://raw.githubusercontent.com/jyhyun1008/5yearslater/main/diary/"+today+".md"
+var url = "https://raw.githubusercontent.com/jyhyun1008/5yearslater/main/diary/"+(year-4)+today+".md"
     fetch(url)
     .then(res => res.text())
     .then((out) => {
-        document.querySelector("#diary").innerHTML += "<div class='today'>"+parseMd(out)+"</div>"
+        document.querySelector("#diary").innerHTML += "<div class='dates'>"+parseMd(out)+"</div>"
+        var url = "https://raw.githubusercontent.com/jyhyun1008/5yearslater/main/diary/"+(year-3)+today+".md"
+        fetch(url)
+        .then(res => res.text())
+        .then((out) => {
+            document.querySelector("#diary").innerHTML += "<div class='dates'>"+parseMd(out)+"</div>"
+            var url = "https://raw.githubusercontent.com/jyhyun1008/5yearslater/main/diary/"+(year-2)+today+".md"
+            fetch(url)
+            .then(res => res.text())
+            .then((out) => {
+                document.querySelector("#diary").innerHTML += "<div class='dates'>"+parseMd(out)+"</div>"
+                var url = "https://raw.githubusercontent.com/jyhyun1008/5yearslater/main/diary/"+(year-1)+today+".md"
+                fetch(url)
+                .then(res => res.text())
+                .then((out) => {
+                    document.querySelector("#diary").innerHTML += "<div class='dates'>"+parseMd(out)+"</div>"
+                    var url = "https://raw.githubusercontent.com/jyhyun1008/5yearslater/main/diary/"+year+today+".md"
+                    fetch(url)
+                    .then(res => res.text())
+                    .then((out) => {
+                        document.querySelector("#diary").innerHTML += "<div class='dates'>"+parseMd(out)+"</div>"
+                    })
+                    .catch(err => { throw err });
+                })
+                .catch(err => { throw err });
+            })
+            .catch(err => { throw err });
+        })
+        .catch(err => { throw err });
     })
     .catch(err => { throw err });
 
