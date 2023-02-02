@@ -59,6 +59,23 @@ span {
     padding: 5px 0;
     border-radius: 15px;
     background-color: var(--accent1);
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#daytracker .colorCube{
+    border-radius: 15px;
+    width: 40px;
+    height: 40px;
+    background-color: var(--white0);
+}
+
+#daytracker .todayColorCube {
+    border-radius: 15px;
+    width: 40px;
+    height: 40px;
+    background-color: var(--white0);
+    border: solid var(--accent2);
 }
 
 #yesterdiary, #todiary, #tomorrowdiary{
@@ -71,11 +88,6 @@ span {
     width: 100%;
     padding: 5px 0;
     border-radius: 15px;
-}
-
-#diary {
-    display: flex;
-    justify-content: space-evenly;
 }
 
 .d {
