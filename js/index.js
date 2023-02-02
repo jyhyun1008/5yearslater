@@ -53,8 +53,6 @@ function getTomorrow(){
 
 function parseMd(md){
 
-    var md0 = md;
-
     //images with links
     md = md.replace(/\!\[([^\]]+)\]\(([^\)]+)\)[\(]{1}([^\)\"]+)(\"(.+)\")?[\)]{1}/g, '<div class="gallery"><a href="$3"><img src="$2" alt="$1" width="100%" /></a></div>');
     
@@ -76,13 +74,28 @@ function parseMd(md){
     return md;
 }
 
+function findColor(md){
+    var color = md.match(/([^`])\w+/gm);
+}
+
 const year = new Date().getFullYear();
 const today = getToday();
 const yesterday = getYesterday();
 const tomorrow = getTomorrow();
+const dayTracker = document.querySelector("#daytracker")
 const diary = document.querySelector("#diary")
 
 function loadcontents(vw){
+    
+var colorCount = parseInt(vw/50)
+for (i=0; i<colorCount, i++){
+    if (i == colorCount-1) {
+        dayTracker.innerHTML += "<div class='todayColorCube' id='day"+(colorCount-i)+"'></div>"
+    } else {
+        dayTracker.innerHTML += "<div class='colorCube' id='day"+(colorCount-i)+"'></div>"
+    }
+    
+}
     
 if (100*vw > 1200) {
 
