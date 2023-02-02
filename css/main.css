@@ -127,6 +127,7 @@ h1, h2, h3{
     background-image: radial-gradient(#cccccc 1px, transparent 0);
     background-size: 20px 20px;
     background-position: -9px -9px;
+    line-height: 1.7em;
 }
 
 .nottoday {
@@ -139,6 +140,8 @@ h1, h2, h3{
     background-image: radial-gradient(#cccccc 1px, transparent 0);
     background-size: 20px 20px;
     background-position: -9px -9px;
+    line-height: 1.7em;
+
 }
 
 .today {
@@ -151,6 +154,7 @@ h1, h2, h3{
   background-image: radial-gradient(#cccccc 1px, transparent 0);
   background-size: 20px 20px;
   background-position: -9px -9px;
+  line-height: 1.7em;
 }
 
 .dates1c {
@@ -163,6 +167,7 @@ h1, h2, h3{
     background-image: radial-gradient(#cccccc 1px, transparent 0);
     background-size: 20px 20px;
     background-position: -9px -9px;
+    line-height: 1.7em;
 }
 
 .today1c {
@@ -175,6 +180,7 @@ h1, h2, h3{
     background-image: radial-gradient(#cccccc 1px, transparent 0);
     background-size: 20px 20px;
     background-position: -9px -9px;
+    line-height: 1.7em;
 }
 
 code {
