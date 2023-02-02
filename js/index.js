@@ -129,45 +129,45 @@ var url = "https://raw.githubusercontent.com/jyhyun1008/5yearslater/main/diary/"
     .then(res => res.text())
     .then((out) => {
         if (out == "404: Not Found"){
-            document.querySelector("#diary").innerHTML += "<div class='dates'><h2 class='d'>"+(year-4)+today+"</h2>기록이 없습니다.</div>"
+            document.querySelector("#diary").innerHTML += "<div class='dates1c'><h2 class='d'>"+(year-4)+today+"</h2>기록이 없습니다.</div>"
         } else {
-            document.querySelector("#diary").innerHTML += "<div class='dates'><h2 class='d'>"+(year-4)+today+"</h2>"+parseMd(out)+"</div>"
+            document.querySelector("#diary").innerHTML += "<div class='dates1c'><h2 class='d'>"+(year-4)+today+"</h2>"+parseMd(out)+"</div>"
         }
         var url = "https://raw.githubusercontent.com/jyhyun1008/5yearslater/main/diary/"+(year-3)+today+".md"
         fetch(url)
         .then(res => res.text())
         .then((out) => {
             if (out == "404: Not Found"){
-                document.querySelector("#diary").innerHTML += "<div class='dates'><h2 class='d'>"+(year-3)+today+"</h2>기록이 없습니다.</div>"
+                document.querySelector("#diary").innerHTML += "<div class='dates1c'><h2 class='d'>"+(year-3)+today+"</h2>기록이 없습니다.</div>"
             } else {
-                document.querySelector("#diary").innerHTML += "<div class='dates'><h2 class='d'>"+(year-3)+today+"</h2>"+parseMd(out)+"</div>"
+                document.querySelector("#diary").innerHTML += "<div class='dates1c'><h2 class='d'>"+(year-3)+today+"</h2>"+parseMd(out)+"</div>"
             }
             var url = "https://raw.githubusercontent.com/jyhyun1008/5yearslater/main/diary/"+(year-2)+today+".md"
             fetch(url)
             .then(res => res.text())
             .then((out) => {
                 if (out == "404: Not Found"){
-                    document.querySelector("#diary").innerHTML += "<div class='dates'><h2 class='d'>"+(year-2)+today+"</h2>기록이 없습니다.</div>"
+                    document.querySelector("#diary").innerHTML += "<div class='dates1c'><h2 class='d'>"+(year-2)+today+"</h2>기록이 없습니다.</div>"
                 } else {
-                    document.querySelector("#diary").innerHTML += "<div class='dates'><h2 class='d'>"+(year-2)+today+"</h2>"+parseMd(out)+"</div>"
+                    document.querySelector("#diary").innerHTML += "<div class='dates1c'><h2 class='d'>"+(year-2)+today+"</h2>"+parseMd(out)+"</div>"
                 }
                 var url = "https://raw.githubusercontent.com/jyhyun1008/5yearslater/main/diary/"+(year-1)+today+".md"
                 fetch(url)
                 .then(res => res.text())
                 .then((out) => {
                     if (out == "404: Not Found"){
-                        document.querySelector("#diary").innerHTML += "<div class='dates'><h2 class='d'>"+(year-1)+today+"</h2>기록이 없습니다.</div>"
+                        document.querySelector("#diary").innerHTML += "<div class='dates1c'><h2 class='d'>"+(year-1)+today+"</h2>기록이 없습니다.</div>"
                     } else {
-                        document.querySelector("#diary").innerHTML += "<div class='dates'><h2 class='d'>"+(year-1)+today+"</h2>"+parseMd(out)+"</div>"
+                        document.querySelector("#diary").innerHTML += "<div class='dates1c'><h2 class='d'>"+(year-1)+today+"</h2>"+parseMd(out)+"</div>"
                     }
                     var url = "https://raw.githubusercontent.com/jyhyun1008/5yearslater/main/diary/"+year+today+".md"
                     fetch(url)
                     .then(res => res.text())
                     .then((out) => {
                         if (out == "404: Not Found"){
-                            document.querySelector("#diary").innerHTML += "<div class='today'><h2 class='d'>"+year+today+"</h2>기록이 없습니다.</div>"
+                            document.querySelector("#diary").innerHTML += "<div class='today1c'><h2 class='d'>"+year+today+"</h2>기록이 없습니다.</div>"
                         } else {
-                            document.querySelector("#diary").innerHTML += "<div class='today'><h2 class='d'>"+year+today+"</h2>"+parseMd(out)+"</div>"
+                            document.querySelector("#diary").innerHTML += "<div class='today1c'><h2 class='d'>"+year+today+"</h2>"+parseMd(out)+"</div>"
                         }
                     })
                     .catch(err => { throw err });
