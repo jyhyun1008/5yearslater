@@ -88,7 +88,7 @@ const diary = document.querySelector("#diary")
 function loadcontents(vw){
     
 var colorCount = parseInt(vw/50)
-for (i=0; i<colorCount, i++){
+for (i=0; i<colorCount; i++){
     if (i == colorCount-1) {
         dayTracker.innerHTML += "<div class='todayColorCube' id='day"+(colorCount-i)+"'></div>"
     } else {
