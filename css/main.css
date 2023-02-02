@@ -17,8 +17,8 @@
     --white0: #ffffff;
     --white1: #ffffffdd;
     --white2: #ffffffbb;
-    --accent1: #7dcfb6;
-    --accent2: #f79256;
+    --accent1: #003049;
+    --accent2: #d62828;
     --red: #ffadad;
     --orange: #ffd6a5;
     --yellow: #fdffb6;
@@ -34,6 +34,9 @@ body {
     font-family: 'regular';
     font-size: 18px;
     background-color: var(--bg);
+    background-image: radial-gradient(#cccccc 1px, transparent 0);
+    background-size: 20px 20px;
+    background-position: -9px -9px;
 }
 
 a {
@@ -85,7 +88,7 @@ h1, h2, h3{
     width: 40px;
     height: 40px;
     background-color: var(--white0);
-    border: solid var(--accent2);
+    border: solid 2px var(--accent2);
 }
 
 #yesterdiary, #todiary, #tomorrowdiary{
