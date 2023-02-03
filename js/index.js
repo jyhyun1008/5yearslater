@@ -463,5 +463,13 @@ var url = "https://raw.githubusercontent.com/jyhyun1008/5yearslater/main/diary/"
 
 }
 
-loadcolorcodes(vw);
 loadcontents(vw);
+
+document.addEventListener("DOMContentLoaded", function(){
+
+    setTimeout(() => {
+        loadcolorcodes(vw);
+    }, 20);
+   
+   });
+   
