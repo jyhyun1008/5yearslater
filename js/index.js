@@ -203,11 +203,12 @@ function loadcolorcodes(vw){
                             colorArray.push(makeColorString(color))
                         }
                     }
+                    dayArray[i].style.background = colorArray[i]
                 })
                 .catch(err => { throw err });
         })
     }
-   
+
 
     const forLoop = async _ => {
         
@@ -217,9 +218,6 @@ function loadcolorcodes(vw){
 
         console.log(colorArray, dayArray)
 
-        for (let i = 0; i < colorCount; i++) {
-            dayArray[i].style.background = colorArray[i]
-        }
     }
     
     forLoop();
