@@ -2,6 +2,24 @@ let vh = window.innerHeight * 0.01;
 let vw = window.innerWidth * 0.01;
 document.documentElement.style.setProperty('--vh', `${vh}px`);
 
+function getQueryStringObject() {
+    var a = window.location.search.substr(1).split('&');
+    if (a == "") return {};
+    var b = {};
+    for (var i = 0; i < a.length; ++i) {
+        var p = a[i].split('=', 2);
+        if (p.length == 1)
+            b[p[0]] = "";
+        else
+            b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
+    }
+    return b;
+}
+
+var qs = getQueryStringObject();
+var newDate = qs.d;
+
+
 if (100*vw <= 1200){
     var ismobile = true;
 } else {
@@ -26,16 +44,24 @@ window.addEventListener('resize', () => {
     }
 })
 
-function getToday(){
-    var date = new Date();
+function getToday(newDate){
+    if (newDate) {
+        var date = new Date(newDate)
+    } else {
+        var date = new Date();
+    }
     var month = ("0" + (1 + date.getMonth())).slice(-2);
     var day = ("0" + date.getDate()).slice(-2);
 
     return month + day;
 }
 
-function getYesterday(){
-    var date = new Date();
+function getYesterday(newDate){
+    if (newDate) {
+        var date = new Date(newDate)
+    } else {
+        var date = new Date();
+    }
     date.setDate(date.getDate() - 1);
     var month = ("0" + (1 + date.getMonth())).slice(-2);
     var day = ("0" + date.getDate()).slice(-2);
@@ -43,8 +69,12 @@ function getYesterday(){
     return month + day;
 }
 
-function getTomorrow(){
-    var date = new Date();
+function getTomorrow(newDate){
+    if (newDate) {
+        var date = new Date(newDate)
+    } else {
+        var date = new Date();
+    }
     date.setDate(date.getDate() + 1);
     var month = ("0" + (1 + date.getMonth())).slice(-2);
     var day = ("0" + date.getDate()).slice(-2);
@@ -52,8 +82,12 @@ function getTomorrow(){
     return month + day;
 }
 
-function getNthDay(n){
-    var date = new Date();
+function getNthDay(newDate, n){
+    if (newDate) {
+        var date = new Date(newDate)
+    } else {
+        var date = new Date();
+    }
     date.setDate(date.getDate() - n);
     var year = date.getFullYear();
     var month = ("0" + (1 + date.getMonth())).slice(-2);
@@ -119,10 +153,15 @@ function makeColorString(color){
     return string;
 }
 
-const year = new Date().getFullYear();
-const today = getToday();
-const yesterday = getYesterday();
-const tomorrow = getTomorrow();
+var year
+if (newDate) {
+    year = new Date(newDate).getFullYear();
+} else{
+    year = new Date().getFullYear();
+}
+const today = getToday(newDate);
+const yesterday = getYesterday(newDate);
+const tomorrow = getTomorrow(newDate);
 const dayTracker = document.querySelector("#daytracker")
 const diary = document.querySelector("#diary")
 
@@ -133,9 +172,9 @@ function loadcolorcodes(vw){
     var colorCount = parseInt(100*vw/60)
     for (i=0; i<colorCount; i++){
         if (i == colorCount-1) {
-            dayTracker.innerHTML += "<div class='todayColorCube' id='day"+(colorCount-i)+"'></div>"
+            dayTracker.innerHTML += "<a href='./?d="+getNthDay(newDate, colorCount-i-1).substr(0, 4)+"-"+getNthDay(newDate, colorCount-i-1).substr(4, 2)+"-"+getNthDay(newDate, colorCount-i-1).substr(6, 2)+"'><div class='todayColorCube' id='day"+(colorCount-i)+"'></div></a>"
         } else {
-            dayTracker.innerHTML += "<div class='colorCube' id='day"+(colorCount-i)+"'></div>"
+            dayTracker.innerHTML += "<a href='./?d="+getNthDay(newDate, colorCount-i-1).substr(0, 4)+"-"+getNthDay(newDate, colorCount-i-1).substr(4, 2)+"-"+getNthDay(newDate, colorCount-i-1).substr(6, 2)+"'><div class='colorCube' id='day"+(colorCount-i)+"'></div></a>"
         }
         
     }
@@ -143,31 +182,12 @@ function loadcolorcodes(vw){
     var dayArray = []
     var colorArray = []
 
-//    for (i=0; i<colorCount; i++){
-  //      dayArray.push(document.querySelector("#day"+(colorCount-i)))
-    //    var url = "https://raw.githubusercontent.com/jyhyun1008/5yearslater/main/diary/"+getNthDay(colorCount-i-1)+".md"
-      //      fetch(url)
-        //    .then(res => res.text())
-          //  .then((out) => {
-            //    if (out.includes('404')){
-              //      colorArray.push(grey)
-                //} else {
-                  //  color = findColor(out)
-                    //if (color.length < 2) {
-                      //  colorArray.push(eval(color[0]))
- //                   } else {
-   //                     colorArray.push(makeColorString(color))
-     //               }
-       //         }
-         //   })
-           // .catch(err => { throw err });
-   // }
    
    const forLoop = async _ => {
   
     for (let i = 0; i < colorCount; i++) {
         dayArray.push(document.querySelector("#day"+(colorCount-i)))
-        var url = "https://raw.githubusercontent.com/jyhyun1008/5yearslater/main/diary/"+getNthDay(colorCount-i-1)+".md"
+        var url = "https://raw.githubusercontent.com/jyhyun1008/5yearslater/main/diary/"+getNthDay(newDate, colorCount-i-1)+".md"
             fetch(url)
             .then(res => res.text())
             .then((out) => {
@@ -191,7 +211,7 @@ function loadcolorcodes(vw){
     }
     
     forLoop();
-    
+
 }
 
 function loadcontents(vw){
