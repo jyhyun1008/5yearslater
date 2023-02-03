@@ -31,7 +31,7 @@ window.addEventListener('resize', () => {
     let vh = window.innerHeight * 0.01;
     let vw = window.innerWidth * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
-    loadcolorcodes(vw);
+    loadcolorcodes(parseInt(100*vw/60));
 
     if (100*vw <= 1200){
         var ismobile_next = true;
@@ -166,10 +166,9 @@ const dayTracker = document.querySelector("#daytracker")
 const diary = document.querySelector("#diary")
 
 
-function loadcolorcodes(vw){
+function loadcolorcodes(colorCount){
 
     dayTracker.innerHTML = ""
-    var colorCount = parseInt(100*vw/60)
     for (i=0; i<colorCount; i++){
         if (i == colorCount-1) {
             dayTracker.innerHTML += "<a href='./?d="+getNthDay(newDate, colorCount-i-1).substr(0, 4)+"-"+getNthDay(newDate, colorCount-i-1).substr(4, 2)+"-"+getNthDay(newDate, colorCount-i-1).substr(6, 2)+"'><div class='todayColorCube' id='day"+(colorCount-i)+"'></div></a>"
@@ -194,13 +193,13 @@ function loadcolorcodes(vw){
                 .then(res => res.text())
                 .then((out) => {
                     if (out.includes('404')){
-                        colorArray.push(grey)
+                        colorArray[i] = grey
                     } else {
                         color = findColor(out)
                         if (color.length < 2) {
-                            colorArray.push(eval(color[0]))
+                            colorArray[i] = eval(color[0])
                         } else {
-                            colorArray.push(makeColorString(color))
+                            colorArray[i] = makeColorString(color)
                         }
                     }
                     dayArray[i].style.background = colorArray[i]
@@ -220,7 +219,9 @@ function loadcolorcodes(vw){
 
     }
     
-    forLoop();
+    setTimeout(() => {
+        forLoop();
+    }, 100);
 
 }
 
@@ -464,12 +465,4 @@ var url = "https://raw.githubusercontent.com/jyhyun1008/5yearslater/main/diary/"
 }
 
 loadcontents(vw);
-
-document.addEventListener("DOMContentLoaded", function(){
-
-    setTimeout(() => {
-        loadcolorcodes(vw);
-    }, 1000);
-   
-   });
-   
+loadcolorcodes(parseInt(100*vw/60));
