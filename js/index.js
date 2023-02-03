@@ -182,10 +182,12 @@ function loadcolorcodes(vw){
     var dayArray = []
     var colorArray = []
 
-   
-   const forLoop = async _ => {
-  
-        for (let i = 0; i < colorCount; i++) {
+    const sleep = ms => {
+        return new Promise(resolve => setTimeout(resolve, ms))
+      }
+
+    const getcccolors = i => {
+        return sleep(0).then(v => {
             dayArray.push(document.querySelector("#day"+(colorCount-i)))
             var url = "https://raw.githubusercontent.com/jyhyun1008/5yearslater/main/diary/"+getNthDay(newDate, colorCount-i-1)+".md"
                 fetch(url)
@@ -201,13 +203,23 @@ function loadcolorcodes(vw){
                             colorArray.push(makeColorString(color))
                         }
                     }
-
-                    dayArray[i].style.background = colorArray[i]
                 })
                 .catch(err => { throw err });
+        })
+    }
+   
+
+    const forLoop = async _ => {
+        
+        for (let i = 0; i < colorCount; i++) {
+            await getcccolors(i)
         }
 
+        console.log(colorArray, dayArray)
 
+        for (let i = 0; i < colorCount; i++) {
+            dayArray[i].style.background = colorArray[i]
+        }
     }
     
     forLoop();
