@@ -143,7 +143,29 @@ function loadcolorcodes(vw){
     var dayArray = []
     var colorArray = []
 
-    for (i=0; i<colorCount; i++){
+//    for (i=0; i<colorCount; i++){
+  //      dayArray.push(document.querySelector("#day"+(colorCount-i)))
+    //    var url = "https://raw.githubusercontent.com/jyhyun1008/5yearslater/main/diary/"+getNthDay(colorCount-i-1)+".md"
+      //      fetch(url)
+        //    .then(res => res.text())
+          //  .then((out) => {
+            //    if (out.includes('404')){
+              //      colorArray.push(grey)
+                //} else {
+                  //  color = findColor(out)
+                    //if (color.length < 2) {
+                      //  colorArray.push(eval(color[0]))
+ //                   } else {
+   //                     colorArray.push(makeColorString(color))
+     //               }
+       //         }
+         //   })
+           // .catch(err => { throw err });
+   // }
+   
+   const forLoop = async _ => {
+  
+    for (let i = 0; i < colorCount; i++) {
         dayArray.push(document.querySelector("#day"+(colorCount-i)))
         var url = "https://raw.githubusercontent.com/jyhyun1008/5yearslater/main/diary/"+getNthDay(colorCount-i-1)+".md"
             fetch(url)
@@ -159,16 +181,17 @@ function loadcolorcodes(vw){
                         colorArray.push(makeColorString(color))
                     }
                 }
+
+                dayArray[i].style.background = colorArray[i]
             })
             .catch(err => { throw err });
     }
 
-    setTimeout(() => {
-        for (i=0; i<colorCount; i++){
-            console.log(colorArray)
-            dayArray[i].style.background = colorArray[i]
-        }
-    }, 200);
+
+    }
+    
+    forLoop();
+    
 }
 
 function loadcontents(vw){
