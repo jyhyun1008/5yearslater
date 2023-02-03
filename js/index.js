@@ -469,7 +469,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
     setTimeout(() => {
         loadcolorcodes(vw);
-    }, 100);
+    }, 1000);
    
    });
    
