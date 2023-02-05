@@ -51,6 +51,7 @@ span {
 
 #logo {
     font-family: 'bold';
+    font-size: 18px;
     font-size: 2.5em;
     text-align: center;
 }
@@ -60,6 +61,30 @@ h1, h2, h3{
     text-align: center;
 }
 
+form {
+    margin: 15px auto;
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+}
+
+input {
+    font-family: 'regular';
+    padding: 10px;
+    border-radius: 15px;
+    border-width: 0px;
+}
+
+.textInput {
+    background-color: var(--grey);
+    width: 65%;
+}
+
+.buttonInput {
+    background-color: var(--accent1);
+    color: var(--white0);
+    width: 25%;
+}
 
 #diary, #daytracker{
     width: 100%;
